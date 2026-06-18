@@ -1,6 +1,6 @@
-package com.example.klebao_static_checker;
+package com.example.klebao;
 
-import com.example.klebao_static_checker.compiler.AnalyzerSINT;
+import com.example.klebao.compiler.AnalyzerSINT;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,14 +21,14 @@ public class LauncherGUI extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Padding
 
         JLabel headerLabel = new JLabel("<html><div style='text-align:center;'>"
-                                      + "<h2 style='color:blue;'>Analisador Léxico & Tabela De Símbolos</h2>"
-                                      + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Código da Equipe:</b> EQ03<br>"
-                                      + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Componentes:</b><br>"
-                                      + "Brian Friedrich dos Santos Schultz; brianschultz320@gmail.com; 71986300394<br>"
-                                      + "Guilherme Ferreira Sampaio<br>"
-                                      + "Samuel Pereira dos Santos Santana<br>"
-                                      + "Olivier Teles Leal Araujo"
-                                      + "</div></html>");
+                                        + "<h2 style='color:blue;'>Analisador Léxico & Tabela De Símbolos</h2>"
+                                        + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Código da Equipe:</b> EQ03<br>"
+                                        + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Componentes:</b><br>"
+                                        + "Brian Friedrich dos Santos Schultz; brianschultz320@gmail.com; 71986300394<br>"
+                                        + "Guilherme Ferreira Sampaio<br>"
+                                        + "Samuel Pereira dos Santos Santana<br>"
+                                        + "Olivier Teles Leal Araujo"
+                                        + "</div></html>");
         mainPanel.add(headerLabel, BorderLayout.NORTH);
 
         JPanel centerPanel = new JPanel();
@@ -38,14 +38,14 @@ public class LauncherGUI extends JFrame {
         JPanel instructionsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));  // Alinha totalmente à esquerda, sem margem lateral
 
         JLabel instructionsLabel = new JLabel("<html>"
-                                       + "<div style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Instruções:</div>"
-                                       + "<div style='margin-top:4px;'>"
-                                       + "- Clique em 'Escolher Arquivo' para selecionar um " +
-                                              "arquivo de código-fonte com extensão .261.<br>"
-                                       + "- Após selecionar, clique em 'Executar Análise' para iniciar o processamento.<br>"
-                                       + "- Os arquivos de saída (.LEX e .TAB) serão gerados na pasta /output do projeto."
-                                       + "</div>"
-                                       + "</html>");
+                                              + "<div style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Instruções:</div>"
+                                              + "<div style='margin-top:4px;'>"
+                                              + "- Clique em 'Escolher Arquivo' para selecionar um " +
+                                              "arquivo de código-fonte com extensão .261<br>"
+                                              + "- Após selecionar, clique em 'Executar Análise' para iniciar o processamento.<br>"
+                                              + "- Os arquivos de saída (.LEX e .TAB) serão gerados na pasta /output do projeto."
+                                              + "</div>"
+                                              + "</html>");
 
 
         instructionsPanel.add(instructionsLabel);

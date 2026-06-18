@@ -1,4 +1,4 @@
-package com.example.klebao_static_checker.compiler;
+package com.example.klebao.compiler;
 
 import lombok.Data;
 
@@ -18,7 +18,7 @@ public class Buffer {
         }
     }
 
-    public String[] splitTextIntoLines(String text){
+    public String[] splitTextIntoLines(String text) {
         return text.split("\\r?\\n");
     }
 }

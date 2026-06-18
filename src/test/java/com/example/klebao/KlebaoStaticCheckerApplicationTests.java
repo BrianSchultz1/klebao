@@ -1,4 +1,4 @@
-package com.example.klebao_static_checker;
+package com.example.klebao;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

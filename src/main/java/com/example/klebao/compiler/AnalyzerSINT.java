@@ -1,9 +1,9 @@
-package com.example.klebao_static_checker.compiler;
+package com.example.klebao.compiler;
 
 
-import com.example.klebao_static_checker.entity.Atom;
-import com.example.klebao_static_checker.entity.SymbolTableItem;
-import com.example.klebao_static_checker.entity.Token;
+import com.example.klebao.entity.Atom;
+import com.example.klebao.entity.SymbolTableItem;
+import com.example.klebao.entity.Token;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class AnalyzerSINT {
 
         AnalyzerLEX analyzerLEX = new AnalyzerLEX(buffer261, filePath);
 
-        String [] lines = analyzerLEX.applyFilters(klebaoList);
+        String[] lines = analyzerLEX.applyFilters();
 
         for (String line : lines) {
             System.out.println(line);
@@ -52,7 +52,7 @@ public class AnalyzerSINT {
         SymbolTableGenerator symbolTableGenerator = new SymbolTableGenerator();
         GeneratorFilesTAB generatorFilesTAB = new GeneratorFilesTAB("EQ03", components, sourceFileName);
 
-        Map<String, SymbolTableItem> items =  symbolTableGenerator.processTokens(tokenList, klebaoList);
+        Map<String, SymbolTableItem> items = symbolTableGenerator.processTokens(tokenList, klebaoList);
 
         for (SymbolTableItem item : items.values()) {
             System.out.println(item);
@@ -65,32 +65,32 @@ public class AnalyzerSINT {
     public static List<Atom> populateKlebaoList() {
         List<Atom> list = new ArrayList<>();
 
-        list.add(new Atom("integer", "A01"));
-        list.add(new Atom("real", "A02"));
+        list.add(new Atom("boolean", "A01"));
+        list.add(new Atom("break", "A02"));
         list.add(new Atom("character", "A03"));
-        list.add(new Atom("string", "A04"));
-        list.add(new Atom("boolean", "A05"));
-        list.add(new Atom("void", "A06"));
-        list.add(new Atom("true", "A07"));
-        list.add(new Atom("false", "A08"));
-        list.add(new Atom("varType", "A09"));
-        list.add(new Atom("funcType", "A10"));
-        list.add(new Atom("paramType", "A11"));
-        list.add(new Atom("declarations", "A12"));
-        list.add(new Atom("endDeclarations", "A13"));
-        list.add(new Atom("program", "A14"));
-        list.add(new Atom("endProgram", "A15"));
-        list.add(new Atom("functions", "A16"));
-        list.add(new Atom("endFunctions", "A17"));
-        list.add(new Atom("endFunction", "A18"));
-        list.add(new Atom("return", "A19"));
-        list.add(new Atom("if", "A20"));
-        list.add(new Atom("else", "A21"));
-        list.add(new Atom("endIf", "A22"));
-        list.add(new Atom("while", "A23"));
-        list.add(new Atom("endWhile", "A24"));
-        list.add(new Atom("break", "A25"));
-        list.add(new Atom("print", "A26"));
+        list.add(new Atom("declarations", "A04"));
+        list.add(new Atom("else", "A05"));
+        list.add(new Atom("endDeclarations", "A06"));
+        list.add(new Atom("endFunction", "A07"));
+        list.add(new Atom("endFunctions", "A08"));
+        list.add(new Atom("endIf", "A09"));
+        list.add(new Atom("endProgram", "A10"));
+        list.add(new Atom("endWhile", "A11"));
+        list.add(new Atom("false", "A12"));
+        list.add(new Atom("functions", "A13"));
+        list.add(new Atom("funcType", "A14"));
+        list.add(new Atom("if", "A15"));
+        list.add(new Atom("integer", "A16"));
+        list.add(new Atom("paramType", "A17"));
+        list.add(new Atom("print", "A18"));
+        list.add(new Atom("program", "A19"));
+        list.add(new Atom("real", "A20"));
+        list.add(new Atom("return", "A21"));
+        list.add(new Atom("string", "A22"));
+        list.add(new Atom("true", "A23"));
+        list.add(new Atom("varType", "A24"));
+        list.add(new Atom("void", "A25"));
+        list.add(new Atom("while", "A26"));
 
         list.add(new Atom(";", "B01"));
         list.add(new Atom(",", "B02"));

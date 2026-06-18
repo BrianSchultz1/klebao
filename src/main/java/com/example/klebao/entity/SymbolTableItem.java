@@ -1,4 +1,4 @@
-package com.example.klebao_static_checker.entity;
+package com.example.klebao.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +17,7 @@ public class SymbolTableItem {
     List<Integer> lines;
 
     public SymbolTableItem(int entryNumber, String code, String lexeme, int sizeBefore,
-                            int sizeAfter, String type, List<Integer> lines) {
+                           int sizeAfter, String type, List<Integer> lines) {
         this.entryNumber = entryNumber;
         this.code = code;
         this.lexeme = lexeme;

@@ -1,8 +1,8 @@
-package com.example.klebao_static_checker.compiler;
+package com.example.klebao.compiler;
 
-import com.example.klebao_static_checker.entity.Atom;
-import com.example.klebao_static_checker.entity.SymbolTableItem;
-import com.example.klebao_static_checker.entity.Token;
+import com.example.klebao.entity.Atom;
+import com.example.klebao.entity.SymbolTableItem;
+import com.example.klebao.entity.Token;
 
 import java.util.*;
 
@@ -30,15 +30,7 @@ public class SymbolTableGenerator {
                 if (!table.containsKey(key)) {
                     List<Integer> lines = new ArrayList<>();
                     lines.add(line);
-                    table.put(key, new SymbolTableItem(
-                            counter++,
-                            atomCode,
-                            truncatedLexeme,
-                            sizeBefore,
-                            sizeAfter,
-                            symbolType,
-                            lines
-                    ));
+                    table.put(key, new SymbolTableItem(counter++, atomCode, truncatedLexeme, sizeBefore, sizeAfter, symbolType, lines));
                 } else {
                     List<Integer> existingLines = table.get(key).getLines();
                     if (existingLines.size() < 5 && !existingLines.contains(line)) {
@@ -56,13 +48,13 @@ public class SymbolTableGenerator {
         int sizeBefore = lexeme.length();
 
         if (atomCode.equals("C06") || atomCode.equals("C07")) {
-            if (sizeBefore > 35) {
-                return lexeme.substring(0, 34) + "\"";
+            if (sizeBefore > 30) {
+                return lexeme.substring(0, 29) + "\"";
             } else {
                 return lexeme;
             }
         } else {
-            return sizeBefore > 35 ? lexeme.substring(0, 35) : lexeme;
+            return sizeBefore > 30 ? lexeme.substring(0, 30) : lexeme;
         }
     }
 
@@ -94,7 +86,7 @@ public class SymbolTableGenerator {
             switch (lexeme) {
                 case "integer" -> currentType = "IN";
                 case "string" -> currentType = "ST";
-                case "char" -> currentType = "CH";
+                case "character" -> currentType = "CH";
                 case "real" -> currentType = "FP";
                 case "boolean" -> currentType = "BL";
                 default -> {

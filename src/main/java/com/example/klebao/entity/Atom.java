@@ -1,4 +1,4 @@
-package com.example.klebao_static_checker.entity;
+package com.example.klebao.entity;
 
 public record Atom(
         String lexeme,

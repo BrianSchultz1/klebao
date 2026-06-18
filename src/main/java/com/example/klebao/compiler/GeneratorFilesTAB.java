@@ -1,7 +1,7 @@
-package com.example.klebao_static_checker.compiler;
+package com.example.klebao.compiler;
 
 
-import com.example.klebao_static_checker.entity.SymbolTableItem;
+import com.example.klebao.entity.SymbolTableItem;
 
 import java.io.BufferedWriter;
 import java.io.File;

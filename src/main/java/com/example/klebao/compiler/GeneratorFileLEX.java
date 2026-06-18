@@ -1,8 +1,8 @@
-package com.example.klebao_static_checker.compiler;
+package com.example.klebao.compiler;
 
 
-import com.example.klebao_static_checker.entity.Atom;
-import com.example.klebao_static_checker.entity.Token;
+import com.example.klebao.entity.Atom;
+import com.example.klebao.entity.Token;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,9 +14,7 @@ public record GeneratorFileLEX(String teamCode, String[] components, String sour
 
     public void generateFileLEX(List<Token> tokens) {
 
-        String formattedSourceName = sourceFileName.contains(".")
-                ? sourceFileName.substring(0, sourceFileName.lastIndexOf('.'))
-                : sourceFileName;
+        String formattedSourceName = sourceFileName.contains(".") ? sourceFileName.substring(0, sourceFileName.lastIndexOf('.')) : sourceFileName;
 
         File outputDir = new File("output");
         if (!outputDir.exists()) outputDir.mkdirs();
@@ -39,24 +37,22 @@ public record GeneratorFileLEX(String teamCode, String[] components, String sour
                 Atom atom = token.atom();
                 String lexemeOriginal = atom.lexeme();
                 String code = atom.code();
-                String index = token.symbolTableIndex() == null ? "-" : token.symbolTableIndex().toString();
+                String index = token.symbolTableIndex() == null ? "-" : token.symbolTableIndex();
                 String line = token.line().toString();
 
                 String lexemeDisplay;
 
-                if (lexemeOriginal.length() > 35) {
+                if (lexemeOriginal.length() > 30) {
                     if (lexemeOriginal.startsWith("\"")) {
-                        lexemeDisplay = lexemeOriginal.substring(0, 34) + "\"";
+                        lexemeDisplay = lexemeOriginal.substring(0, 29) + "\"";
                     } else {
-                        lexemeDisplay = lexemeOriginal.substring(0, 35);
+                        lexemeDisplay = lexemeOriginal.substring(0, 30);
                     }
                 } else {
                     lexemeDisplay = lexemeOriginal;
                 }
 
-                writer.write(
-                        String.format("Lexeme: %-35s Código: %-7s ÍndiceTabSimb: %-3s Linha: %s.\n", lexemeDisplay, code, index, line)
-                );
+                writer.write(String.format("Lexeme: %-30s Código: %-7s ÍndiceTabSimb: %-3s Linha: %s" + ".%n", lexemeDisplay, code, index, line));
             }
 
 
