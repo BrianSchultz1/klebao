@@ -2,10 +2,10 @@
 
 Universidade Católica do Salvador. 
 Disciplina: Compiladores. 
-Professor: Osvaldo Requião.  
+Professor: Osvaldo Requião. 
 Data: 18/06/2026. 
 Equipe: EQ03. 
-Alunos: Brian Friedrich dos Santos Schultz, Guilherme Ferreira Sampaio, Olivier Teles Leal Araujo e Samuel Pereira dos Santos Santana.
+Alunos: Brian Friedrich dos Santos Schultz, Guilherme Ferreira Sampaio, Olivier Teles Leal Araujo e Samuel Pereira dos Santos Santana. 
 
 ## Descrição do Projeto
 
