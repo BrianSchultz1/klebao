@@ -1,10 +1,10 @@
 # Klebão - Analisador Léxico & Tabela De Símbolos
 
-Universidade Católica do Salvador. 
-Disciplina: Compiladores. 
-Professor: Osvaldo Requião. 
-Data: 18/06/2026. 
-Equipe: EQ03. 
+Universidade Católica do Salvador<br>
+Disciplina: Compiladores<br>
+Professor: Osvaldo Requião<br>
+Data: 18/06/2026<br>
+Equipe: EQ03<br>
 Alunos: Brian Friedrich dos Santos Schultz, Guilherme Ferreira Sampaio, Olivier Teles Leal Araujo e Samuel Pereira dos Santos Santana. 
 
 ## Descrição do Projeto
