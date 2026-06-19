@@ -1,6 +1,5 @@
 package com.example.klebao.compiler;
 
-import com.example.klebao.entity.Atom;
 import com.example.klebao.entity.SymbolTableItem;
 import com.example.klebao.entity.Token;
 
@@ -11,7 +10,7 @@ public class SymbolTableGenerator {
     private final Map<String, SymbolTableItem> table = new LinkedHashMap<>();
     private int counter = 1;
 
-    public Map<String, SymbolTableItem> processTokens(List<Token> tokens, List<Atom> klebaoList) {
+    public Map<String, SymbolTableItem> processTokens(List<Token> tokens) {
         for (Token token : tokens) {
             String atomCode = token.atom().code();
 
@@ -20,7 +19,6 @@ public class SymbolTableGenerator {
                 int line = token.line();
 
                 String truncatedLexeme = applyTruncation(originalLexeme, atomCode);
-
                 String symbolType = determineSymbolTypeCorrected(truncatedLexeme, atomCode);
                 int sizeBefore = originalLexeme.length();
                 int sizeAfter = truncatedLexeme.length();
@@ -104,16 +102,6 @@ public class SymbolTableGenerator {
                 }
             }
         }
-    }
-
-    public void print() {
-        for (SymbolTableItem item : table.values()) {
-            System.out.println(item);
-        }
-    }
-
-    public Collection<SymbolTableItem> getTable() {
-        return table.values();
     }
 }
 

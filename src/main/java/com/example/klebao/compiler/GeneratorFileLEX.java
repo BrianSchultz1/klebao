@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public record GeneratorFileLEX(String teamCode, String[] components, String sourceFileName) {
+public record GeneratorFileLEX(String teamCode, List<String> components, String sourceFileName) {
 
     public void generateFileLEX(List<Token> tokens) {
 

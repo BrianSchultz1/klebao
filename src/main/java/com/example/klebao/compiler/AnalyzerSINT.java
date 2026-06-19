@@ -11,19 +11,58 @@ import java.util.List;
 import java.util.Map;
 
 public class AnalyzerSINT {
+    private AnalyzerSINT() {}
 
-    public static void main(String[] args) {
-        List<Atom> klebaoList = populateKlebaoList();
+    private static final String TEAM_CODE = "EQ03";
 
-        String filePath;
-        if (args.length > 0) {
-            filePath = args[0];
-        } else {
-            System.err.println("Nenhum arquivo de entrada foi especificado.");
-            return;
+    private static final List<String> COMPONENTS =
+            List.of(
+                    "Brian Friedrich dos Santos Schultz",
+                    "Guilherme Ferreira Sampaio",
+                    "Olivier Teles Leal Araujo",
+                    "Samuel Pereira dos Santos Santana"
+            );
+
+
+    public static void analyze(String filePath) {
+
+        List<Token> tokenList = executeLexAnalysis(filePath);
+
+        generateLexFile(tokenList, filePath);
+
+        generateSymbolTable(tokenList, filePath);
+    }
+
+
+    private static void generateSymbolTable(List<Token> tokenList, String filePath
+    ) {
+        SymbolTableGenerator symbolTableGenerator = new SymbolTableGenerator();
+        Map<String, SymbolTableItem> items = symbolTableGenerator.processTokens(tokenList);
+        String sourceFileName = new File(filePath).getName();
+
+        for (SymbolTableItem item : items.values()) {
+            System.out.println(item);
         }
 
+        GeneratorFilesTAB generatorFilesTAB =
+                new GeneratorFilesTAB(
+                        TEAM_CODE,
+                        COMPONENTS,
+                        sourceFileName
+                );
 
+        generatorFilesTAB.generateTabFile(items);
+    }
+
+    private static void generateLexFile(List<Token> tokenList, String filePath) {
+        String sourceFileName = new File(filePath).getName();
+
+        GeneratorFileLEX generatorFileLEX = new GeneratorFileLEX(TEAM_CODE, COMPONENTS, sourceFileName);
+        generatorFileLEX.generateFileLEX(tokenList);
+
+    }
+
+    private static List<Token> executeLexAnalysis(String filePath) {
         Buffer buffer261 = new Buffer();
 
         AnalyzerLEX analyzerLEX = new AnalyzerLEX(buffer261, filePath);
@@ -34,33 +73,9 @@ public class AnalyzerSINT {
             System.out.println(line);
         }
 
-        List<Token> tokenList = analyzerLEX.captureValidTokens(lines, klebaoList);
-
-        String[] components = {
-                "Brian Friedrich dos Santos Schultz",
-                "Guilherme Ferreira Sampaio",
-                "Olivier Teles Leal Araujo",
-                "Samuel Pereira dos Santos Santana"
-        };
-
-        File file = new File(filePath);
-        String sourceFileName = file.getName();
-
-        GeneratorFileLEX generatorFileLEX = new GeneratorFileLEX("EQ03", components, sourceFileName);
-        generatorFileLEX.generateFileLEX(tokenList);
-
-        SymbolTableGenerator symbolTableGenerator = new SymbolTableGenerator();
-        GeneratorFilesTAB generatorFilesTAB = new GeneratorFilesTAB("EQ03", components, sourceFileName);
-
-        Map<String, SymbolTableItem> items = symbolTableGenerator.processTokens(tokenList, klebaoList);
-
-        for (SymbolTableItem item : items.values()) {
-            System.out.println(item);
-        }
-
-        generatorFilesTAB.generateTabFile(items);
-
+        return analyzerLEX.captureValidTokens(lines, populateKlebaoList());
     }
+
 
     public static List<Atom> populateKlebaoList() {
         List<Atom> list = new ArrayList<>();
@@ -127,3 +142,4 @@ public class AnalyzerSINT {
         return list;
     }
 }
+

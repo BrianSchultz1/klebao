@@ -2,14 +2,20 @@ package com.example.klebao.compiler;
 
 
 import com.example.klebao.entity.SymbolTableItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
-public record GeneratorFilesTAB(String teamCode, String[] components, String sourceFileName) {
+public record GeneratorFilesTAB(String teamCode, List<String> components, String sourceFileName) {
+
+    static Logger logger = LoggerFactory.getLogger(Buffer.class);
+
 
     public void generateTabFile(Map<String, SymbolTableItem> items) {
         String formattedSourceName = sourceFileName.contains(".")
@@ -33,20 +39,20 @@ public record GeneratorFilesTAB(String teamCode, String[] components, String sou
             writer.write("\nRELATÓRIO DA TABELA DE SÍMBOLOS. Texto fonte analisado: " + sourceFileName + "\n\n");
 
             for (SymbolTableItem item : items.values()) {
-                writer.write(String.format("Entrada: %d, Codigo: %s, Lexeme: %s,\n",
-                                           item.getEntryNumber(), item.getCode(), item.getLexeme()));
-                writer.write(String.format("QtdCharAntesTrunc: %d, QtdCharDepoisTrunc: %d,\n",
-                                           item.getSizeBefore(), item.getSizeAfter()));
-                writer.write(String.format("TipoSimb: %s, Linhas: %s.\n",
-                                           item.getType(), item.getLines()));
-                writer.write("-------------------------------------------------------------\n");
+                writer.write(String.format("Entrada: %d, Codigo: %s, Lexeme: %s,%n" +
+                                           "QtdCharAntesTrunc: %d, QtdCharDepoisTrunc: %d,%n" +
+                                           "TipoSimb: %s, Linhas: %s.%n" +
+                                           "-------------------------------------------------------------%n",
+
+                item.getEntryNumber(), item.getCode(), item.getLexeme(),
+                item.getSizeBefore(), item.getSizeAfter(), item.getType(),  item.getLines()
+                ));
             }
 
-            System.out.println("Arquivo .tab gerado com sucesso!");
-
+            logger.info("Arquivo .TAB gerado com sucesso: {}", path);
 
         } catch (IOException e) {
-            System.err.println("Erro ao gerar o arquivo: " + e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }
