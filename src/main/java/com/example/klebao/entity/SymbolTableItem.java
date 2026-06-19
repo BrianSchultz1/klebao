@@ -1,20 +1,20 @@
 package com.example.klebao.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class SymbolTableItem {
     private final int entryNumber;
     private final String code;
     private final String lexeme;
     private int sizeBefore;
     private int sizeAfter;
-    
+
     @Setter
     private String type;
 
