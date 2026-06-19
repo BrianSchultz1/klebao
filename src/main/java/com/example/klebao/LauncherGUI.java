@@ -13,7 +13,7 @@ public class LauncherGUI extends JFrame {
     private File selectedFile;
 
     public LauncherGUI() {
-        setTitle("Klebão2026-1 - Analisador Léxico e Tabela De Símbolos");
+        setTitle("Klebão2026-1");
         setSize(600, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -22,16 +22,16 @@ public class LauncherGUI extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel headerLabel = new JLabel("<html><div style='text-align:center;'>" + "<h2 " +
-                                        "style='color:#64B4FF;'>Analisador Léxico & Tabela De " +
+                                        "style='color:#64B4FF;'>Analisador Léxico e Tabela De " +
                                         "Símbolos</h2>" + "<b style='text-align:center; " +
                                         "font-weight:bold; font-size:13px; margin-bottom:0; " +
-                                        "padding-bottom:0;'>Código da Equipe:</b> EQ03<br>" + "<b" +
+                                        "padding-bottom:0;'>Código Equipe:</b> EQ03<br>" + "<b" +
                                         " style='text-align:center; font-weight:bold; " +
                                         "font-size:13px; margin-bottom:0; padding-bottom:0;" +
-                                        "'>Componentes:</b><br>" + "Brian Friedrich dos Santos " +
+                                        "'><br>Componentes:</b><br>" + "Brian Friedrich dos Santos " +
                                         "Schultz; brian.schultz@ucsal.edu.br; 71986300394<br>" +
-                                        "Guilherme Ferreira Sampaio; guilhermeferreira.sampaio@ucsal.edu.br;" +
-                                        " " +
+                                        "Guilherme Ferreira Sampaio; guilhermeferreira" +
+                                        ".sampaio@ucsal.edu.br;" +
                                         " <br>" + "Samuel Pereira dos Santos Santana; samuel.santana@ucsal.edu.br<br>" +
                                         "Olivier Teles Leal Araujo; olivier.araujo@ucsal.edu" +
                                                                      ".br" + "</div></html>");
@@ -46,7 +46,7 @@ public class LauncherGUI extends JFrame {
         JLabel instructionsLabel = new JLabel("<html>" + "<div style='text-align:center; " +
                                               "font-weight:bold; font-size:13px; margin-bottom:0;" +
                                               " padding-bottom:0;'>Instruções:</div>" + "<div " +
-                                              "style='margin-top:4px;'>" + "1 - Clique em " +
+                                              "style='margin-top:1px;'>" + "1 - Clique em " +
                                               "'Escolher Arquivo' para selecionar um " + "arquivo" +
                                               " de código-fonte com extensão .261<br>" + "2 - " +
                                               "Após selecionar, clique em 'Executar Análise' para" +
