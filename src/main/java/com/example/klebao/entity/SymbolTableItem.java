@@ -1,31 +1,24 @@
 package com.example.klebao.entity;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
+@RequiredArgsConstructor
 public class SymbolTableItem {
-    int entryNumber;
-    String code;
-    String lexeme;
-    int sizeBefore;
-    int sizeAfter;
+    private final int entryNumber;
+    private final String code;
+    private final String lexeme;
+    private int sizeBefore;
+    private int sizeAfter;
+    
     @Setter
-    String type;
-    List<Integer> lines;
+    private String type;
 
-    public SymbolTableItem(int entryNumber, String code, String lexeme, int sizeBefore,
-                           int sizeAfter, String type, List<Integer> lines) {
-        this.entryNumber = entryNumber;
-        this.code = code;
-        this.lexeme = lexeme;
-        this.sizeBefore = sizeBefore;
-        this.sizeAfter = sizeAfter;
-        this.type = type;
-        this.lines = lines;
-    }
+    private List<Integer> lines;
 
     @Override
     public String toString() {
@@ -33,4 +26,3 @@ public class SymbolTableItem {
                              entryNumber, code, lexeme, sizeBefore, sizeAfter, type, lines);
     }
 }
-
