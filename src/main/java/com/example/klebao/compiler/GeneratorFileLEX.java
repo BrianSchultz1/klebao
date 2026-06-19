@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,11 +24,11 @@ public record GeneratorFileLEX(String teamCode, List<String> components, String 
         Path outputFile = Path.of("output", getFormattedSourceName() + ".LEX");
 
         try (BufferedWriter writer = Files.newBufferedWriter(outputFile)) {
-
             writeHeader(writer);
 
-
-
+            for (Token token : tokens) {
+                writer.write(buildTokenLine(token));
+            }
 
         } catch (IOException e) {
             logger.error("Erro ao gerar o arquivo LEX: {}", e.getMessage());
