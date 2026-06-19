@@ -20,7 +20,7 @@ public class LauncherGUI extends JFrame {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Padding
 
-        JLabel headerLabel = new JLabel("<html><div style='text-align:center;'>" + "<h2 style='color:blue;'>Analisador Léxico & Tabela De Símbolos</h2>" + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Código da Equipe:</b> EQ03<br>" + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Componentes:</b><br>" + "Brian Friedrich dos Santos Schultz; brianschultz320@gmail.com; 71986300394<br>" + "Guilherme Ferreira Sampaio<br>" + "Samuel Pereira dos Santos Santana<br>" + "Olivier Teles Leal Araujo" + "</div></html>");
+        JLabel headerLabel = new JLabel("<html><div style='text-align:center;'>" + "<h2 style='color:#64B4FF;'>Analisador Léxico & Tabela De Símbolos</h2>" + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Código da Equipe:</b> EQ03<br>" + "<b style='text-align:center; font-weight:bold; font-size:13px; margin-bottom:0; padding-bottom:0;'>Componentes:</b><br>" + "Brian Friedrich dos Santos Schultz; brianschultz320@gmail.com; 71986300394<br>" + "Guilherme Ferreira Sampaio<br>" + "Samuel Pereira dos Santos Santana<br>" + "Olivier Teles Leal Araujo" + "</div></html>");
         mainPanel.add(headerLabel, BorderLayout.NORTH);
 
         JPanel centerPanel = new JPanel();
