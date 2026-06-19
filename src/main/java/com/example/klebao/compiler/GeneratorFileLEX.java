@@ -3,61 +3,93 @@ package com.example.klebao.compiler;
 
 import com.example.klebao.entity.Atom;
 import com.example.klebao.entity.Token;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 public record GeneratorFileLEX(String teamCode, List<String> components, String sourceFileName) {
 
+    private static final Logger logger = LoggerFactory.getLogger(GeneratorFileLEX.class);
+
     public void generateFileLEX(List<Token> tokens) {
 
-        String formattedSourceName = sourceFileName.contains(".") ? sourceFileName.substring(0, sourceFileName.lastIndexOf('.')) : sourceFileName;
+        createOutputDirectory();
 
-        File outputDir = new File("output");
-        if (!outputDir.exists()) outputDir.mkdirs();
+        Path outputFile = Path.of("output", getFormattedSourceName() + ".LEX");
 
-        String path = "output/" + formattedSourceName + ".LEX";
+        try (BufferedWriter writer = Files.newBufferedWriter(outputFile)) {
+
+            writeHeader(writer);
 
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-
-            writer.write("Código da Equipe: " + teamCode + "\n");
-            writer.write("Componentes:\n");
-            for (String componente : components) {
-                writer.write("    " + componente + ";\n");
-            }
-
-            writer.write("\nRELATÓRIO DA ANÁLISE LÉXICA");
-            writer.write("\nTexto fonte analisado: " + sourceFileName + "\n\n");
-
-            for (Token token : tokens) {
-                Atom atom = token.atom();
-                String lexemeOriginal = atom.lexeme();
-                String code = atom.code();
-                String index = token.symbolTableIndex() == null ? "-" : token.symbolTableIndex();
-                String line = token.line().toString();
-
-                String lexemeDisplay;
-
-                if (lexemeOriginal.length() > 30) {
-                    if (lexemeOriginal.startsWith("\"")) {
-                        lexemeDisplay = lexemeOriginal.substring(0, 29) + "\"";
-                    } else {
-                        lexemeDisplay = lexemeOriginal.substring(0, 30);
-                    }
-                } else {
-                    lexemeDisplay = lexemeOriginal;
-                }
-
-                writer.write(String.format("Lexeme: %-30s Código: %-7s ÍndiceTabSimb: %-3s Linha: %s" + ".%n", lexemeDisplay, code, index, line));
-            }
 
 
         } catch (IOException e) {
-            System.err.println("Erro ao gerar o arquivo LEX: " + e.getMessage());
+            logger.error("Erro ao gerar o arquivo LEX: {}", e.getMessage());
         }
+    }
+
+    private void createOutputDirectory() {
+        File outputDir = new File("output");
+
+        if (!outputDir.exists()) {
+            outputDir.mkdirs();
+        }
+    }
+
+    private String formatLexeme(String lexeme) {
+        if (lexeme.length() <= 30) {
+            return lexeme;
+        }
+
+        if (lexeme.startsWith("\"")) {
+            return lexeme.substring(0, 29) + "\"";
+        }
+
+        return lexeme.substring(0, 30);
+    }
+
+    private void writeHeader(BufferedWriter writer) throws IOException {
+        writer.write("Código da Equipe: " + teamCode + "\n");
+        writer.write("Componentes:\n");
+
+        for (String component : components) {
+            writer.write("    " + component + ";\n");
+        }
+
+        writer.write("\nRELATÓRIO DA ANÁLISE LÉXICA");
+        writer.write("\nTexto fonte analisado: " + sourceFileName + "\n\n");
+    }
+
+    private String getFormattedSourceName() {
+        if (!sourceFileName.contains(".")) {
+            return sourceFileName;
+        }
+
+        return sourceFileName.substring(
+                0,
+                sourceFileName.lastIndexOf('.')
+        );
+    }
+
+    private String buildTokenLine(Token token) {
+        Atom atom = token.atom();
+
+
+
+        return String.format(
+                "Lexeme: %-30s Código: %-7s ÍndiceTabSimb: %-3s Linha: %s.%n",
+                formatLexeme(atom.lexeme()),
+                atom.code(),
+                token.symbolTableIndex() == null ? "-" : token.symbolTableIndex(),
+                token.line()
+        );
     }
 }
